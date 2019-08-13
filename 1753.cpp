@@ -1,82 +1,82 @@
-//#include <iostream>
-//#include <vector>
-//#include <queue>
-//#include <limits.h>
-//#include <cstdio>
-//
-//using namespace std;
-//
-//// ±×·¡ÇÁÀÇ ÀÎÁ¢ ¸®½ºÆ®(¿¬°áµÈ Á¤Á¡ ¹øÈ£, °£¼± °¡ÁßÄ¡) ½Ö
-//vector< pair<int, int>> adj[20001]; // 2Â÷¿ø ¹è¿­°ú µ¿ÀÏ
-//
-//
-//vector<int> dijkstra(int src, int V, int E)
-//{
-//	// V¸¸Å­ ¹è¿­À» INT_MAX·Î ÃÊ±âÈ­
-//	vector<int> dist(V, INT_MAX);
-//	dist[src] = 0; //½ÃÀÛÁöÁ¡ : 0À¸·Î
-//
-//	priority_queue<pair<int, int> > pq; //¿ì¼±¼øÀ§ Å¥ ÀÌ¿ë
-//
-//	pq.push(make_pair(0, src)); //-ºñ¿ë, ³ëµå
-//
-//	while (!pq.empty())
-//	{
-//		int cost = -pq.top().first; //À½¼ö·Î ³Ö¾î¼­
-//		int here = pq.top().second;
-//
-//		pq.pop();
-//
-//		// ¸¸¾à Áö±İ ²¨³½ °Íº¸´Ù ´õ ÂªÀº °æ·Î¸¦ ¾Ë°í ÀÖ´Ù¸é Áö±İ ²¨³½°ÍÀ» ¹«½ÃÇÑ´Ù.
-//		if (dist[here] < cost)
-//			continue;
-//
-//		// ÀÎÁ¢ÇÑ Á¤Á¡µéÀ» ¸ğµÎ °Ë»ç
-//		for (int i = 0; i < adj[here].size(); i++)
-//		{
-//			int there = adj[here][i].first;
-//			int nextDist = cost + adj[here][i].second;
-//
-//			// ´õ ÂªÀº °æ·Î¸¦ ¹ß°ßÇÏ¸é, dist[]¸¦ °»½ÅÇÏ°í ¿ì¼±¼øÀ§ Å¥¿¡ ³Ö´Â´Ù.
-//			if (dist[there] > nextDist)
-//			{
-//				dist[there] = nextDist;
-//				pq.push(make_pair(-nextDist, there));
-//				/*
-//				¿©±â¼­ -·Î ³Ö´Â ÀÌÀ¯?
-//				priority_queue STLÀº ±âº»ÀûÀ¸·Î °¡Àå Å« ¿ø¼Ò°¡ À§·Î °¡µµ·Ï Å¥¸¦ ±¸¼º
-//				µû¶ó¼­ °Å¸®ÀÇ ºÎÈ£¸¦ ¹Ù²ã¼­ °Å¸®°¡ ÀÛÀº Á¤Á¡ºÎÅÍ ²¨³»Áöµµ·Ï ÇÏ±â À§ÇÔ
-//				*/
-//			}
-//		}
-//	}
-//
-//
-//	return dist;
-//}
-//
-//int main()
-//{
-//	// Á¤Á¡, °£¼±ÀÇ °³¼ö ¹× ½ÃÀÛÁ¡
-//	int V, E, start;
-//
-//	scanf("%d %d", &V, &E);
-//	scanf("%d", &start);
-//
-//	V++; // Á¤Á¡ÀÇ °³¼ö°¡ 1ºÎÅÍ ½ÃÀÛÇÏ¸é V++ÇØÁØ´Ù.
-//
-//	for (int i = 0; i < E; i++)
-//	{
-//		int from, to, val;
-//		scanf("%d %d %d", &from, &to, &val);
-//
-//		adj[from].push_back(make_pair(to, val));
-//	}
-//
-//	vector<int> ans = dijkstra(start, V, E);
-//
-//	for (int i = 1; i < V; i++)
-//		ans[i] == INT_MAX ? printf("INF\n") : printf("%d\n", ans[i]);
-//
-//	return 0;
-//}
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits.h>
+#include <cstdio>
+
+using namespace std;
+
+// ê·¸ë˜í”„ì˜ ì¸ì ‘ ë¦¬ìŠ¤íŠ¸(ì—°ê²°ëœ ì •ì  ë²ˆí˜¸, ê°„ì„  ê°€ì¤‘ì¹˜) ìŒ
+vector< pair<int, int>> adj[20001]; // 2ì°¨ì› ë°°ì—´ê³¼ ë™ì¼
+
+
+vector<int> dijkstra(int src, int V, int E)
+{
+	// Vë§Œí¼ ë°°ì—´ì„ INT_MAXë¡œ ì´ˆê¸°í™”
+	vector<int> dist(V, INT_MAX);
+	dist[src] = 0; //ì‹œì‘ì§€ì  : 0ìœ¼ë¡œ
+
+	priority_queue<pair<int, int> > pq; //ìš°ì„ ìˆœìœ„ í ì´ìš©
+
+	pq.push(make_pair(0, src)); //-ë¹„ìš©, ë…¸ë“œ
+
+	while (!pq.empty())
+	{
+		int cost = -pq.top().first; //ìŒìˆ˜ë¡œ ë„£ì–´ì„œ
+		int here = pq.top().second;
+
+		pq.pop();
+
+		// ë§Œì•½ ì§€ê¸ˆ êº¼ë‚¸ ê²ƒë³´ë‹¤ ë” ì§§ì€ ê²½ë¡œë¥¼ ì•Œê³  ìˆë‹¤ë©´ ì§€ê¸ˆ êº¼ë‚¸ê²ƒì„ ë¬´ì‹œí•œë‹¤.
+		if (dist[here] < cost)
+			continue;
+
+		// ì¸ì ‘í•œ ì •ì ë“¤ì„ ëª¨ë‘ ê²€ì‚¬
+		for (int i = 0; i < adj[here].size(); i++)
+		{
+			int there = adj[here][i].first;
+			int nextDist = cost + adj[here][i].second;
+
+			// ë” ì§§ì€ ê²½ë¡œë¥¼ ë°œê²¬í•˜ë©´, dist[]ë¥¼ ê°±ì‹ í•˜ê³  ìš°ì„ ìˆœìœ„ íì— ë„£ëŠ”ë‹¤.
+			if (dist[there] > nextDist)
+			{
+				dist[there] = nextDist;
+				pq.push(make_pair(-nextDist, there));
+				/*
+				ì—¬ê¸°ì„œ -ë¡œ ë„£ëŠ” ì´ìœ ?
+				priority_queue STLì€ ê¸°ë³¸ì ìœ¼ë¡œ ê°€ì¥ í° ì›ì†Œê°€ ìœ„ë¡œ ê°€ë„ë¡ íë¥¼ êµ¬ì„±
+				ë”°ë¼ì„œ ê±°ë¦¬ì˜ ë¶€í˜¸ë¥¼ ë°”ê¿”ì„œ ê±°ë¦¬ê°€ ì‘ì€ ì •ì ë¶€í„° êº¼ë‚´ì§€ë„ë¡ í•˜ê¸° ìœ„í•¨
+				*/
+			}
+		}
+	}
+
+
+	return dist;
+}
+
+int main()
+{
+	// ì •ì , ê°„ì„ ì˜ ê°œìˆ˜ ë° ì‹œì‘ì 
+	int V, E, start;
+
+	scanf("%d %d", &V, &E);
+	scanf("%d", &start);
+
+	V++; // ì •ì ì˜ ê°œìˆ˜ê°€ 1ë¶€í„° ì‹œì‘í•˜ë©´ V++í•´ì¤€ë‹¤.
+
+	for (int i = 0; i < E; i++)
+	{
+		int from, to, val;
+		scanf("%d %d %d", &from, &to, &val);
+
+		adj[from].push_back(make_pair(to, val));
+	}
+
+	vector<int> ans = dijkstra(start, V, E);
+
+	for (int i = 1; i < V; i++)
+		ans[i] == INT_MAX ? printf("INF\n") : printf("%d\n", ans[i]);
+
+	return 0;
+}
