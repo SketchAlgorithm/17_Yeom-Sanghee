@@ -6,9 +6,9 @@ string reverse(string::iterator &itr) {
 
 	char head = *(itr);
 
-	++itr;
+	++itr; //다음 글자부터 넘겨주기 위해서
 
-	if (head == 'w' || head == 'b') return string(1,head);
+	if (head == 'w' || head == 'b') return string(1, head);
 
 	string lefttop = reverse(itr);
 	string righttop = reverse(itr);
@@ -30,5 +30,4 @@ int main() {
 		cout << reverse(itr) << "\n";
 	}
 
-	cin >> t;
 }
